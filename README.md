@@ -13,10 +13,12 @@ Se deja un pequeño instructivo sobre la utilización del script de fuerza bruta
 ```bash
 chmod +x brute_attack.sh
 ```
+
 - Utilizando diccionario:
 Ejecutar -> ```dictionary``` (default)
 ```bash
 ./attack.sh [-m modo] [-d dictionary_path ] [-u user] [-p password]
+```
 
 - Otra opción:
 Ejecutar -> ```brute``` (default credentials: admin/password)
