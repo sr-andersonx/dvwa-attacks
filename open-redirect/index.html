@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gmail - Inicia sesión</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f1f3f4;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 56px;
+      background-color: #4a148c;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      color: white;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-btn {
+      width: 24px;
+      height: 24px;
+      margin: 0 8px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .address-bar {
+      flex-grow: 1;
+      height: 36px;
+      margin: 0 12px;
+      padding: 0 12px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .login-container {
+      background-color: white;
+      width: 450px;
+      border-radius: 8px;
+      padding: 48px 40px 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .google-logo {
+      width: 75px;
+      height: 24px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      margin-bottom: 32px;
+      color: #202124;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 54px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      padding: 13px 15px;
+      font-size: 16px;
+      margin-bottom: 8px;
+      outline: none;
+    }
+
+    .input-field:focus {
+      border: 2px solid #1a73e8;
+    }
+
+    .forgot-email {
+      text-align: left;
+      width: 100%;
+      margin-bottom: 48px;
+    }
+
+    .forgot-email a {
+      color: #1a73e8;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .footer-text {
+      width: 100%;
+      font-size: 14px;
+      color: #5f6368;
+      margin-bottom: 16px;
+    }
+
+    .footer-text a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    .buttons-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .create-account {
+      color: #1a73e8;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .next-button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 24px;
+      cursor: pointer;
+    }
+
+    .next-button:hover {
+      background-color: #1669d9;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .page-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #5f6368;
+    }
+
+    .language-selector {
+      display: flex;
+      align-items: center;
+    }
+
+    .language-selector select {
+      padding: 8px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      background-color: white;
+      color: #5f6368;
+    }
+
+    .footer-links a {
+      color: #5f6368;
+      text-decoration: none;
+      margin-left: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="nav-buttons">
+      <button class="nav-btn">←</button>
+      <button class="nav-btn">→</button>
+      <button class="nav-btn">↻</button>
+    </div>
+    <div class="address-bar">accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1</div>
+  </div>
+
+  <div class="login-container">
+    <img src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" class="google-logo">
+    
+    <h1>Inicia sesión</h1>
+    <p class="subtitle">Ir a Gmail</p>
+    
+    <input type="text" class="input-field" placeholder="Correo electrónico o teléfono">
+    
+    <div class="forgot-email">
+      <a href="#">¿Olvidaste el correo electrónico?</a>
+    </div>
+    
+    <div class="footer-text">
+      ¿Esta no es tu computadora? Usa el modo de invitado para navegar de forma privada. 
+      <a href="#">Más información para usar el modo de invitado</a>
+    </div>
+    
+    <div class="buttons-container">
+      <a href="#" class="create-account">Crear cuenta</a>
+      <button class="next-button">Siguiente</button>
+    </div>
+  </div>
+  
+  <div class="page-footer">
+    <div class="language-selector">
+      <select>
+        <option>Español (Latinoamérica)</option>
+      </select>
+    </div>
+    <div class="footer-links">
+      <a href="#">Ayuda</a>
+      <a href="#">Privacidad</a>
+      <a href="#">Condiciones</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.next-button').addEventListener('click', function() {
+      alert('Simulación de inicio de sesión: En una implementación real, esto enviaría datos al servidor de Google.');
+    });
+  </script>
+</body>
+</html>

